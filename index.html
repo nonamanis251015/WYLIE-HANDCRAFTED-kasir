@@ -127,5 +127,10 @@ async function scanFrame(){if(!scanLoop||!detector)return;try{let codes=await de
 function stopScan(){scanLoop=false;if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}$('video').srcObject=null;$('video').classList.add('hidden')}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 $('storeName').value=localStorage.getItem('wh_store')||'WYLIE HANDCRAFTED';$('tagline').value=localStorage.getItem('wh_tagline')||'Every Piece Has a Story';renderCart();renderProducts();
-</script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .catch(error => console.log(error));
+  });
+}</script>
 </body></html>
